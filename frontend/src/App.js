@@ -17,7 +17,7 @@ function App() {
   const [submitSuccess, setSubmitSuccess] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/contacts")
+    axios.get("https://contact-backend-8v1o.onrender.com/api/contacts")
       .then(res => setContacts(res.data));
   }, []);
 
@@ -48,10 +48,11 @@ function App() {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    const res = await axios.post(
-      "http://localhost:5000/api/contacts",
-      form
-    );
+   const res = await axios.post(
+    "https://contact-backend-8v1o.onrender.com/api/contacts",
+     form
+);
+
 
     setContacts([res.data, ...contacts]);
     setForm({ name: "", email: "", phone: "", message: "" });
@@ -63,7 +64,7 @@ function App() {
   };
 
   const deleteContact = async (id) => {
-    await axios.delete(`http://localhost:5000/api/contacts/${id}`);
+   await axios.delete(`https://contact-backend-8v1o.onrender.com/api/contacts/${id}`);
     setContacts(contacts.filter(c => c._id !== id));
     setSubmitSuccess("Contact deleted successfully");
     setTimeout(() => {
